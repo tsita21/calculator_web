@@ -39,7 +39,28 @@
           <input class="nums" type="button" value="0" onclick="display.value +='0' ">
           <input class="nums" type="button" value="." onclick="display.value +='.' ">
           <input class="equal" type="button" value="=" onclick="checkAndCalculate()">
-          
+          <script>
+            function checkAndCalculate() {
+                let expression = document.getElementById("display").value;
+                let result;
+  
+                if (expression.includes("/0")) {
+                    result = "Error: Division by zero is not allowed";
+                } else {
+                    try {
+                        result = eval(expression);
+                        if (Number.isNaN(result)) {
+                            throw new Error("Invalid input");
+                        }
+                    } catch (error) {
+                        result = "Error: " + error.message;
+                    }
+                }
+                
+                document.getElementById("display").value = result;
+            }
+            </script>
+  
           <input class="op" type="button" value="+" onclick="display.value +='+' ">
         </div>
         
