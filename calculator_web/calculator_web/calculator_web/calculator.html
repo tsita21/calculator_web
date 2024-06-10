@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <form >
+        <div class="dis">
+          <input id="display" type="text" name="display" placeholder="0">
+        </div>
+        <div >
+          <input class="clear" type="button" value="c" onclick="display.value ='' ">
+        </div>
+        <div class="bot">
+          <input class="nums" type="button" value="7" onclick="display.value +='7' ">
+          <input class="nums" type="button" value="8" onclick="display.value +='8' ">
+          <input class="nums" type="button" value="9" onclick="display.value +='9' ">
+          <input class="op" type="button" value="*" onclick="display.value +='*' ">
+        </div>
+        <div class="but">
+          <input class="nums" type="button" value="4" onclick="display.value +='4' ">
+          <input class="nums" type="button" value="5" onclick="display.value +='5' ">
+          <input class="nums" type="button" value="6" onclick="display.value +='6' ">
+          <input class="op"
+          type="button" value="/" onclick="display.value +='/' ">
+        </div>
+        <div class="but">
+          <input class="nums" type="button" value="1" onclick ="display.value +='1' ">
+          <input class="nums" type="button" value="2" onclick="display.value +='2' ">
+          <input class="nums" type="button" value="3" onclick="display.value +='3' ">
+          <input class="op" type="button" value="-" onclick="display.value +='-' ">
+        </div>
+        <div class="but">
+          <input class="nums" type="button" value="0" onclick="display.value +='0' ">
+          <input class="nums" type="button" value="." onclick="display.value +='.' ">
+          <input class="equal" type="button" value="=" onclick="checkAndCalculate()">
+          <script>
+            function checkAndCalculate() {
+                let expression = document.getElementById("display").value;
+                let result;
+  
+                if (expression.includes("/0")) {
+                    result = "Error: Division by zero is not allowed";
+                } else {
+                    try {
+                        result = eval(expression);
+                        if (Number.isNaN(result)) {
+                            throw new Error("Invalid input");
+                        }
+                    } catch (error) {
+                        result = "Error: " + error.message;
+                    }
+                }
+                
+                document.getElementById("display").value = result;
+            }
+            </script>
+  
+          <input class="op" type="button" value="+" onclick="display.value +='+' ">
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</body>
+</html>
